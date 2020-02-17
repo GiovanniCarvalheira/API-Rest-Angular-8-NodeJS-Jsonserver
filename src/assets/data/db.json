@@ -1,0 +1,11 @@
+{
+  "funcionarios": [
+    {
+      "nome": "Teste",
+      "cargo": "Teste",
+      "salario": 1024,
+      "email": "592e9d0cef@hellomail.fun",
+      "id": 1
+    }
+  ]
+}
