@@ -1,8 +1,8 @@
 ## Tecnologias necessárias:
 
-Angular CLI (v8.15.0)\n
-Node.JS (v12.16.0)\n
-Json-server\n
+Angular CLI (v8.15.0) - 
+Node.JS (v12.16.0) - 
+Json-server
 
 ## Comandos dentro da pasta do projeto:
 
