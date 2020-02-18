@@ -1,4 +1,4 @@
-## Api Rest Angular 8, NodeJS & Jsonserver
+## API Rest Angular 8, NodeJS & Jsonserver
 
 Gerenciador de funcionários utilizando API Rest, Angular 8, NodeJS & Jsonserver.
 
