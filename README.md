@@ -1,6 +1,4 @@
-## Projeto
-
-Tecnologias necessárias:
+## Tecnologias necessárias:
 
 Angular CLI (v8.15.0)
 Node.JS (v12.16.0)
