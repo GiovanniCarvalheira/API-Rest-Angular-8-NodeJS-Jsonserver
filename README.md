@@ -1,12 +1,14 @@
-## Api Rest utilizando Angular 8, NodeJS & Jsonserver
+## Api Rest Angular 8, NodeJS & Jsonserver
 
-## Tecnologias necessárias:
+Gerenciador de funcionários utilizando API Rest, Angular 8, NodeJS & Jsonserver.
+
+## Pré-requisitos:
 
 Angular CLI (v8.15.0) - 
 Node.JS (v12.16.0) - 
 Json-server
 
-## Comandos dentro da pasta do projeto:
+## Guia de instalação:
 
 ATENÇÃO: É necessário executar os comandos no CMD no caminho onde foi salvo os arquivos!
 
