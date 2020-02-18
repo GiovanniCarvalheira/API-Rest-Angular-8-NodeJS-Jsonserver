@@ -4,7 +4,7 @@ Gerenciador de funcionários utilizando API Rest, Angular 8, NodeJS & Jsonserver
 
 ## Pré-requisitos:
 
-Angular CLI (v8.15.0) - 
+Angular CLI (v9.0.2) - 
 Node.JS (v12.16.0) - 
 Json-server
 
