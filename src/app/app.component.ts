@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     if (this.funcionario.id !== undefined) {
       (async () => { 
         this.Alerts(3);
-        await this.delay(30000);
+        await this.delay(1000);
         this.funcionarioService.updateFuncionario(this.funcionario).subscribe(() => {
           
         });
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
         this.funcionario = this.funcionario2;
         this.ScrollTop();
         this.Alerts(1);
-        await this.delay(30000);
+        await this.delay(1500);
         
         this.funcionarioService.saveFuncionario(this.funcionario).subscribe(() => {
         });
