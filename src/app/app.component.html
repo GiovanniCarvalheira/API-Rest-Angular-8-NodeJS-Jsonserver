@@ -1,74 +1,237 @@
+<!-- Topo - Titulo -->
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Gerenciamento de Funcionários</li>
-    </ol>
-    </nav>
-    <div class="container">
-    <div class="card list-funcionario">
-    <h5 class="card-header">Lista de Funcionários</h5>
-    <div class="card-body">
-    <table class="table">
-    <thead>
-    <tr>
-    <th scope="col">Id</th>
-    <th scope="col">Nome</th>
-    <th scope="col">Cargo</th>
-    <th scope="col">Salário</th>
-    <th scope="col">Email</th>
-    <th scope="col">Ações</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let funcionario of funcionarios">
-    <td>{{funcionario.id}}</td>
-    <td>{{funcionario.nome}}</td>
-    <td>{{funcionario.cargo}}</td>
-    <td>{{funcionario.salario | currency}}</td>
-    <td>{{funcionario.email}}</td>
-    <td>
-    <button type="button" class="btn btn-warning btn-sm" (click)="editFuncionario(funcionario)">Editar</button>
-    <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteFuncionario(funcionario)">Deletar</button>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+    <div class="breadcrumb justify-content-center" id="top">
+        <li class="breadcrumb-item active" aria-current="page">Gerenciamento de Funcionários 2.0</li>
     </div>
-    </div>
-    <div class="card add-funcionario">
-    <h5 class="card-header">Adicionar/Atualizar Funcionário</h5>
-    <div class="card-body">
-    <form id="add-form" (ngSubmit)="f.form.valid && saveFuncionario(f)" #f="ngForm" novalidate>
-    <div class="form-group">
-    <label for="nome">Nome:</label>
-    <input type="text" [(ngModel)]="funcionario.nome" id="nome" name="nome" #nome="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && nome.invalid }" placeholder="Digite o nome">
-    <div *ngIf="f.submitted && nome.invalid" class="invalid-feedback">
-    <div *ngIf="nome.errors.required">Preencher o campo Nome é obrigatório!</div>
-    </div>
-    </div>
-    <div class="form-group">
-    <label for="cargo">Cargo:</label>
-    <input type="text" [(ngModel)]="funcionario.cargo" id="cargo" name="cargo" #cargo="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && cargo.invalid }" placeholder="Digite o cargo">
-    <div *ngIf="f.submitted && cargo.invalid" class="invalid-feedback">
-    <div *ngIf="cargo.errors.required">Preencher o campo Cargo é obrigatório!</div>
-    </div>
-    </div>
-    <div class="form-group">
-    <label for="salario">Salário:</label>
-    <input type="number" [(ngModel)]="funcionario.salario" id="salario" name="salario" #salario="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && salario.invalid }" placeholder="Digite o salário">
-    <div *ngIf="f.submitted && salario.invalid" class="invalid-feedback">
-    <div *ngIf="salario.errors.required">Preencher o campo Salário é obrigatório!</div>
-    </div>
-    </div>
-    <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email" [(ngModel)]="funcionario.email" id="email" name="email" #email="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" placeholder="Digite o email">
-    <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
-    <div *ngIf="email.errors.required">Preencher o campo Email é obrigatório!</div>
-    </div>
-    </div>
-    <button type="submit" class="btn btn-primary btn-add-funcionario">Salvar</button>
-    <button type="reset" class="btn btn-secondary btn-add-funcionario" (click)="cleanForm(f)">Cancelar</button>
+</nav>
+<div class="container">
+
+    <!-- Alerts - Cadastro & deleção -->
+    <form [style.display]="isVisibleSucess ? 'block' : 'none'">
+        <div class="alert alert-success">
+            <strong>Successo!</strong> Funcionário {{funcionario2.nome}} cadastrado com sucesso!
+        </div>
     </form>
+    <form [style.display]="isVisibleDelete ? 'block' : 'none'">
+        <div class="alert alert-success">
+            <strong>Successo!</strong> Funcionário deletado com sucesso!
+        </div>
+    </form>
+
+    <!-- Exibição da lista de funcionários -->
+    <div id="campo_funcionarios">
+        <div class="card list-funcionario">
+            <button type="button" class="btn btn-primary" id="btnCollapse" data-toggle="collapse" data-target="#demo" (click)="ShowList()" [innerHTML]="htmlStr" (click)="ChangeName()"></button>
+            <div id="demo" class="collapse">
+                <h5 class="card-header" id="listfunc">Lista de Funcionários</h5>
+                <div class="card-body" id="teste">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Cargo</th>
+                                <th scope="col">Salário</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let funcionario of funcionarios">
+                                <td>{{funcionario.id}}</td>
+                                <td>{{funcionario.nome}}</td>
+                                <td>{{funcionario.cargo}}</td>
+                                <td>{{funcionario.salario | currency}}</td>
+                                <td>{{funcionario.email}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" (click)="editFuncionario(funcionario)">Editar</button>
+                                    <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteFuncionario(funcionario)">Deletar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Modal -->
+                    <div class="modal fade bd-example-modal-lg" id="modaledit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <h5 class="card-header" id="card-header">Editar Funcionário<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cleanForm(f)">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button></h5>
+                                <div class="card-body">
+
+                                    <!-- Alert EditFuncionario -->
+                                    <form [style.display]="isVisibleEdit ? 'block' : 'none'">
+                                        <div class="alert alert-success">
+                                            <strong>Successo!</strong> Funcionário {{funcionario.nome}} editado com sucesso!
+                                        </div>
+                                    </form>
+                                    <form (ngSubmit)="f.form.valid && saveUpdateFuncionario()" #f="ngForm" novalidate>
+
+                                        <!-- Campo nome -->
+                                        <div class="form-group">
+                                            <label for="nome">Nome:</label>
+                                            <input type="text" maxlength="20" [(ngModel)]="funcionario.nome" id="nome" id="validInput" name="nome" #nome="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && nome.invalid }" placeholder="Digite o nome" pattern="[A-ZÀ-Ÿ][A-zÀ-ÿ']+\s([A-zÀ-ÿ']\s?)*[A-ZÀ-Ÿ][A-zÀ-ÿ']+$">
+
+                                            <!-- Validação campo nome -->
+                                            <div id="validLabel" *ngIf="nome.valid && nome.value != ''">
+                                                Tudo certo!
+                                            </div>
+                                            <div id="invalidLabel" *ngIf="nome.invalid && nome.dirty && nome.value == '' || f.submitted && nome.invalid && nome.value == null">
+                                                Preencher o campo Nome é obrigatório!
+                                            </div>
+                                            <div id="invalidLabel" [hidden]="!nome.hasError('pattern')">Formato de nome inválido!<br>Exemplo: Al Pacino</div>
+                                        </div>
+
+                                        <!-- Campo cargo -->
+                                        <div class="form-group">
+                                            <label for="cargo">Cargo:</label>
+                                            <div class="input-group">
+                                                <select class="form-control" id="inputGroupSelect04" [(ngModel)]="funcionario.cargo" id="cargo" name="cargo" #cargo="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && cargo.invalid }">
+                                                    <option disabled selected>Escolha um cargo...</option>
+                                                    <option value="Gerente">Gerente</option>
+                                                    <option value="Sub-Gerente">Sub-Gerente</option>
+                                                    <option value="Programador">Programador</option>
+                                                    <option value="Analista">Analista</option>
+                                                    <option value="Estagiário">Estagiário</option>
+                                                  </select>
+
+                                                <!-- Validação campo cargo -->
+                                                <div *ngIf="f.submitted && cargo.invalid" class="invalid-feedback">
+                                                    <div *ngIf="cargo.errors.required">Escolher o Cargo é obrigatório!</div>
+                                                </div>
+                                                <div id="validLabel" *ngIf="cargo.valid">
+                                                    Tudo certo!
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Campo salario -->
+                                        <div class="form-group">
+                                            <label for="salario">Salário:</label>
+                                            <input type="text" maxlength="5" [(ngModel)]="funcionario.salario" id="salario" id="validInput" name="salario" #salario="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && salario.invalid }" placeholder="Digite o salário"
+                                                pattern="[0-9]+$">
+
+                                            <!-- Validação campo salario -->
+                                            <div id="validLabel" *ngIf="salario.valid">
+                                                Tudo certo!
+                                            </div>
+                                            <div id="invalidLabel" [hidden]="!salario.hasError('pattern')">É permitido apenas números!</div>
+                                            <div id="invalidLabel" *ngIf="salario.invalid && salario.value == '' || f2.submitted && salario.invalid && salario2.value == null">
+                                                Preencher o campo Salário é obrigatório!
+                                            </div>
+                                        </div>
+
+                                        <!-- Campo enail -->
+                                        <div class="form-group">
+                                            <label for="email">Email:</label>
+                                            <input type="email" maxlength="30" [(ngModel)]="funcionario.email" id="email" id="validInput" name="email" ngModel [email]="true" #email="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" placeholder="Digite o email"
+                                                pattern="[a-zA-Z0-9][a-zA-Z0-9\._-]+@([a-zA-Z0-9\._-]+\.)[a-zA-Z-0-9]{2,3}$">
+
+                                            <!-- Validação campo email -->
+                                            <div id="invalidLabel" *ngIf="email.invalid && email.value === '' || f.submitted && email.invalid && email.value == null">Preencher o campo Email é obrigatório!</div>
+                                            <div id="invalidLabel" [hidden]="!email.hasError('pattern')" *ngIf="email.invalid && email.value != ''">Formato inválido!<br>Exemplo: scarface@gmail.com</div>
+                                            <div id="validLabel" *ngIf="email.valid">
+                                                Tudo certo!
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-add-funcionario">Salvar</button>
+                                        <button type="reset" class="btn btn-secondary btn-add-funcionario" (click)="cleanForm(f)" data-dismiss="modal">Cancelar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Formulário de cadastro -->
+    <div class="card add-funcionario">
+        <h5 class="card-header" id="card-header">Adicionar Novo Funcionário</h5>
+        <div class="card-body">
+            <form id="add-form2" (ngSubmit)="f2.form.valid && saveUpdateFuncionario()" #f2="ngForm" novalidate>
+
+                <!-- Campo nome2 -->
+                <div class="form-group">
+                    <label for="nome2">Nome:</label>
+                    <input type="text" maxlength="20" [(ngModel)]="funcionario2.nome" id="nome2" name="nome2" #nome2="ngModel" required class="form-control" id="validationCustom01" [ngClass]="{ 'is-invalid': f2.submitted && nome2.invalid }" placeholder="Digite o nome" pattern="[A-ZÀ-Ÿ][A-zÀ-ÿ']+\s([A-zÀ-ÿ']\s?)*[A-ZÀ-Ÿ][A-zÀ-ÿ']+$">
+
+                    <!-- Validação campo nome2 -->
+                    <div id="validLabel" *ngIf="nome2.valid && nome2.dirty">
+                        Tudo certo!
+                    </div>
+                    <div id="invalidLabel" *ngIf="nome2.invalid && nome2.dirty && nome2.value == '' || f2.submitted && nome2.invalid && nome2.value == null">
+                        Preencher o campo Nome é obrigatório!
+                    </div>
+                    <div id="invalidLabel" [hidden]="!nome2.hasError('pattern')">Formato de nome inválido!<br>Exemplo: Al Pacino</div>
+                </div>
+
+                <!-- Campo cargo2 -->
+                <div class="form-group">
+                    <label for="cargo">Cargo:</label>
+                    <div class="input-group">
+                        <select class="form-control" id="inputGroupSelect04" [(ngModel)]="funcionario2.cargo" id="cargo2" name="cargo2" #cargo2="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f2.submitted && cargo2.invalid }">
+                          <option disabled selected>Escolha um cargo...</option>
+                          <option value="Gerente">Gerente</option>
+                          <option value="Sub-Gerente">Sub-Gerente</option>
+                          <option value="Programador">Programador</option>
+                          <option value="Analista">Analista</option>
+                          <option value="Estagiário">Estagiário</option>
+                        </select>
+
+                        <!-- Validação campo cargo2 -->
+                        <div *ngIf="f2.submitted && cargo2.invalid" class="invalid-feedback">
+                            <div *ngIf="cargo2.errors.required">Escolher o Cargo é obrigatório!</div>
+                        </div>
+                        <div id="validLabel" *ngIf="cargo2.valid && cargo2.dirty">
+                            Tudo certo!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campo salario2 -->
+                <div class="form-group">
+                    <label for="salario2">Salário:</label>
+                    <input type="text" maxlength="5" [(ngModel)]="funcionario2.salario" id="salario2" name="salario2" #salario2="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f2.submitted && salario2.invalid }" placeholder="Digite o salário" pattern="[0-9]+$">
+
+                    <!-- Validação campo salario2 -->
+                    <div id="validLabel" *ngIf="salario2.valid && salario2.dirty">
+                        Tudo certo!
+                    </div>
+                    <div id="invalidLabel" [hidden]="!salario2.hasError('pattern')">É permitido apenas números!</div>
+                    <div id="invalidLabel" *ngIf="salario2.invalid && salario2.dirty && salario2.value == '' || f2.submitted && salario2.invalid && salario2.value == null">
+                        Preencher o campo Salário é obrigatório!
+                    </div>
+                </div>
+
+                <!-- Campo email2 -->
+                <div class="form-group">
+                    <label for="email2">Email:</label>
+                    <input type="email2" maxlength="30" [(ngModel)]="funcionario2.email" id="email2" name="email2" ngModel [email]="true" #email2="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f2.submitted && email2.invalid }" placeholder="Digite o email"
+                        pattern="[a-zA-Z0-9][a-zA-Z0-9\._-]+@([a-zA-Z0-9\._-]+\.)[a-zA-Z-0-9]{2,3}$">
+
+                    <!-- Validação campo email2 -->
+                    <div id="invalidLabel" *ngIf="email2.invalid && email2.dirty && email2.value === '' || f2.submitted && email2.invalid && email2.value == null">Preencher o campo Email é obrigatório!</div>
+                    <div id="invalidLabel" [hidden]="!email2.hasError('pattern')" *ngIf="email2.invalid && email2.dirty && email2.value != ''">Formato inválido!<br>Exemplo: scarface@gmail.com</div>
+                    <div id="validLabel" *ngIf="email2.valid">
+                        Tudo certo!
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-add-funcionario">Salvar</button>
+                <button type="reset" class="btn btn-secondary btn-add-funcionario" (click)="cleanForm(f)">Limpar</button>
+            </form>
+        </div>
     </div>
+</div>
+
+<!-- Rodapé página -->
+<footer class="page-footer font-small special-color-dark pt-3">
+    <div class="container">
+        <div class="footer-copyright text-center py-1">Coded by: GiovanniCarvalheira
+            <br>
+            <a href="https://github.com/GiovanniCarvalheira"> Github.com/GiovanniCarvalheira</a>
+        </div>
     </div>
+</footer>

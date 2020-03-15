@@ -1,11 +1,60 @@
 {
   "funcionarios": [
     {
-      "nome": "Teste",
-      "cargo": "Teste",
-      "salario": 1024,
-      "email": "592e9d0cef@hellomail.fun",
+      "nome": "Katharine Ta",
+      "cargo": "Gerente",
+      "salario": "5000",
+      "email": "katharineelliott@gmail.com",
       "id": 1
+    },
+    {
+      "email": "leonard@gmail.com",
+      "nome": "Leonard Harv",
+      "cargo": "Gerente",
+      "salario": "2500",
+      "id": 2
+    },
+    {
+      "nome": "Pennington Gill",
+      "email": "PenningtonGill@gmail.com",
+      "cargo": "Sub-Gerente",
+      "salario": "1800",
+      "id": 3
+    },
+    {
+      "nome": "Elvis Presley",
+      "cargo": "Estagiário",
+      "salario": "800",
+      "email": "elvispresley@gmail.com",
+      "id": 4
+    },
+    {
+      "nome": "Teste Testando",
+      "cargo": "Sub-Gerente",
+      "salario": "55",
+      "email": "testetestando@gmail.com",
+      "id": 5
+    },
+    {
+      "nome": "Teste Testando",
+      "cargo": "Gerente",
+      "salario": "1000",
+      "email": "testetestando@gmail.com",
+      "id": 6
+    },
+    {
+      "nome": "Pennington Gill",
+      "cargo": "Sub-Gerente",
+      "salario": "5000",
+      "email": "katharineelliott@gmail.com",
+      "id": 7
+    },
+    {
+      "nome": "Teste Testando",
+      "cargo": "Gerente",
+      "salario": "5555",
+      "email": "testetestando@gmail.com",
+      "id": 8
     }
   ]
 }
