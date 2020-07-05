@@ -1,4 +1,4 @@
-## API Rest Angular 8, NodeJS, Typescript & Jsonserver
+## Gerenciador de Funcionários utilizando Angular 8 utilizando Jsonserver
 
 Gerenciador de funcionários utilizando API Rest, Angular 8, NodeJS & Jsonserver.
 
@@ -12,8 +12,6 @@ Json-server
 
 ATENÇÃO: É necessário executar os comandos no CMD no caminho onde foi salvo os arquivos!
 
-1. npm install -g @angular/cli
-2. npm install -g json-server
-3. npm install --save-dev @angular-devkit/build-angular
-4. json-server --watch src/assets/data/db.json
-5. ng serve --open
+1- npm install
+2. json-server --watch src/assets/data/db.json
+3. ng serve --open
