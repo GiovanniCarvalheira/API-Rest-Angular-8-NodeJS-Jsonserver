@@ -12,3 +12,7 @@ export interface Funcionario2 {
     salario: number;
     email: string;
 }
+
+export interface Pesquisa{
+    nome: string;
+}

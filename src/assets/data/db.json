@@ -1,18 +1,11 @@
 {
   "funcionarios": [
     {
-      "nome": "Katharine Ta",
-      "cargo": "Gerente",
-      "salario": "5000",
-      "email": "katharineelliott@gmail.com",
-      "id": 1
-    },
-    {
-      "email": "leonard@gmail.com",
       "nome": "Leonard Harv",
       "cargo": "Gerente",
-      "salario": "2500",
-      "id": 2
+      "salario": "5000",
+      "email": "leonardharv@gmail.com",
+      "id": 1
     },
     {
       "nome": "Pennington Gill",
@@ -29,7 +22,7 @@
       "id": 4
     },
     {
-      "nome": "Pennington Gill",
+      "nome": "Katharine Elliott",
       "cargo": "Sub-Gerente",
       "salario": "5000",
       "email": "katharineelliott@gmail.com",

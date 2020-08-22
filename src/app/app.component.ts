@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Type } from '@angular/core';
 import { FuncionarioService } from './services/funcionario.service';
-import { Funcionario } from './models/funcionario';
-import { Funcionario2 } from './models/funcionario';
+import { Funcionario, Funcionario2, Pesquisa } from './models/funcionario';
 import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-root',
@@ -16,9 +15,11 @@ export class AppComponent implements OnInit {
   funcionarios: Funcionario[];
   funcionario2 = {} as Funcionario2;
   funcionarios2: Funcionario2[];
+  pesquisa = {} as Pesquisa;
+  pesquisas: Pesquisa[];
 
   constructor(private funcionarioService: FuncionarioService) {}
-  
+
   ngOnInit() {
     this.getFuncionarios();
   }
@@ -26,22 +27,22 @@ export class AppComponent implements OnInit {
   //Verifica se um funcionário já existe ou não, e se existir ele atualiza, caso não exista, ele cria um novo.
   saveUpdateFuncionario(form?: NgForm) {
     if (this.funcionario.id !== undefined) {
-      (async () => { 
+      (async () => {
         this.Alerts(3);
         await this.delay(1000);
         this.funcionarioService.updateFuncionario(this.funcionario).subscribe(() => {
-          
+
         });
     })();
-      
+
     } else {
-      
-      (async () => { 
+
+      (async () => {
         this.funcionario = this.funcionario2;
         this.ScrollTop();
         this.Alerts(1);
         await this.delay(1500);
-        
+
         this.funcionarioService.saveFuncionario(this.funcionario).subscribe(() => {
         });
     })();
@@ -57,7 +58,7 @@ export class AppComponent implements OnInit {
 
   // Deleta um funcionario
   deleteFuncionario(funcionario: Funcionario) {
-    (async () => { 
+    (async () => {
       this.Alerts(2);
       await this.delay(1000);
       this.funcionarioService.deleteFuncionario(funcionario).subscribe(() => {
@@ -70,7 +71,7 @@ export class AppComponent implements OnInit {
   editFuncionario(funcionario: Funcionario) {
     this.funcionario = { ...funcionario };
   }
-  
+
   // Limpa o formulario.
   cleanForm(form: NgForm) {
     this.getFuncionarios();
@@ -127,5 +128,18 @@ export class AppComponent implements OnInit {
     window.scrollTo({
       top: 0,
     });
+}
+//Checa se o input salario é um caractere ou um número.
+CheckType(salario: any){
+        var re = /^\d/;
+        var re2 = /[a-zA-Z]/;
+        var result = true;
+        if(re.test(salario)){
+          result = false;
+        }
+        if(re2.test(salario)){
+          result = true;
+        }
+        return result;
 }
 }

@@ -23,8 +23,12 @@
         <div class="card list-funcionario">
             <button type="button" class="btn btn-primary" id="btnCollapse" data-toggle="collapse" data-target="#demo" (click)="ShowList()" [innerHTML]="htmlStr" (click)="ChangeName()"></button>
             <div id="demo" class="collapse">
-                <h5 class="card-header" id="listfunc">Lista de Funcionários</h5>
-                <div class="card-body" id="teste">
+                <div class="topnav">
+                    <h5 class="card-header" id="listfunc">Lista de Funcionários
+                        <input class="form-control" id="inpSearch" [(ngModel)]="pesquisa.nome" #inpSearch="ngModel" maxlength="20" type="text" placeholder="Pesquisar por nome" aria-label="Pesquisar por nome">
+                    </h5>
+                </div>
+                <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
@@ -36,21 +40,42 @@
                                 <th scope="col">Ações</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr *ngFor="let funcionario of funcionarios">
+                        <tbody *ngFor="let funcionario of funcionarios">
+                            <tr *ngIf="inpSearch.value != funcionario.nome && inpSearch.dirty == false || inpSearch.value == ''">
+
+
                                 <td>{{funcionario.id}}</td>
                                 <td>{{funcionario.nome}}</td>
                                 <td>{{funcionario.cargo}}</td>
                                 <td>{{funcionario.salario | currency}}</td>
                                 <td>{{funcionario.email}}</td>
+
+
+                                <td>
+                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" (click)="editFuncionario(funcionario)">Editar</button>
+                                    <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteFuncionario(funcionario)">Deletar</button>
+                                </td>
+
+                            </tr>
+                            <tr *ngIf="inpSearch.value == funcionario.nome && inpSearch.dirty">
+
+
+                                <td>{{funcionario.id}}</td>
+                                <td>{{funcionario.nome}}</td>
+                                <td>{{funcionario.cargo}}</td>
+                                <td>{{funcionario.salario | currency}}</td>
+                                <td>{{funcionario.email}}</td>
+
+
                                 <td>
                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" (click)="editFuncionario(funcionario)">Editar</button>
                                     <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteFuncionario(funcionario)">Deletar</button>
                                 </td>
                             </tr>
+
+
                         </tbody>
                     </table>
-
                     <!-- Modal -->
                     <div class="modal fade bd-example-modal-lg" id="modaledit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static">
                         <div class="modal-dialog modal-lg">
@@ -110,19 +135,22 @@
                                         <div class="form-group">
                                             <label for="salario">Salário:</label>
                                             <input type="text" maxlength="5" [(ngModel)]="funcionario.salario" id="salario" id="validInput" name="salario" #salario="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && salario.invalid }" placeholder="Digite o salário"
-                                                pattern="[0-9]+$">
+                                                pattern="^[1-9][0-9]*$">
 
                                             <!-- Validação campo salario -->
                                             <div id="validLabel" *ngIf="salario.valid">
                                                 Tudo certo!
                                             </div>
-                                            <div id="invalidLabel" [hidden]="!salario.hasError('pattern')">É permitido apenas números!</div>
+                                            <div id="invalidLabel" *ngIf="salario.invalid && salario.dirty && CheckType(salario.value) == true && salario.value != ''">É permitido apenas números!</div>
                                             <div id="invalidLabel" *ngIf="salario.invalid && salario.value == '' || f2.submitted && salario.invalid && salario2.value == null">
                                                 Preencher o campo Salário é obrigatório!
                                             </div>
+                                            <div id="invalidLabel" *ngIf="salario.invalid && salario.dirty && salario.value < 1 && salario.value != ''">
+                                                É permitido apenas valores acima de 0!
+                                            </div>
                                         </div>
 
-                                        <!-- Campo enail -->
+                                        <!-- Campo email -->
                                         <div class="form-group">
                                             <label for="email">Email:</label>
                                             <input type="email" maxlength="30" [(ngModel)]="funcionario.email" id="email" id="validInput" name="email" ngModel [email]="true" #email="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" placeholder="Digite o email"
@@ -194,15 +222,18 @@
                 <!-- Campo salario2 -->
                 <div class="form-group">
                     <label for="salario2">Salário:</label>
-                    <input type="text" maxlength="5" [(ngModel)]="funcionario2.salario" id="salario2" name="salario2" #salario2="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f2.submitted && salario2.invalid }" placeholder="Digite o salário" pattern="[0-9]+$">
+                    <input type="text" maxlength="5" [(ngModel)]="funcionario2.salario" id="salario2" name="salario2" #salario2="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f2.submitted && salario2.invalid }" placeholder="Digite o salário" pattern="^[1-9]\d\d\d*$">
 
                     <!-- Validação campo salario2 -->
-                    <div id="validLabel" *ngIf="salario2.valid && salario2.dirty">
+                    <div id="validLabel" *ngIf="salario2.valid && salario2.dirty && salario2.value > 0">
                         Tudo certo!
                     </div>
-                    <div id="invalidLabel" [hidden]="!salario2.hasError('pattern')">É permitido apenas números!</div>
+                    <div id="invalidLabel" *ngIf="salario2.invalid && salario2.dirty && CheckType(salario2.value) == true && salario2.value != ''">É permitido apenas números!</div>
                     <div id="invalidLabel" *ngIf="salario2.invalid && salario2.dirty && salario2.value == '' || f2.submitted && salario2.invalid && salario2.value == null">
                         Preencher o campo Salário é obrigatório!
+                    </div>
+                    <div id="invalidLabel" *ngIf="salario2.invalid && salario2.dirty && salario2.value < 100 && salario2.value != ''">
+                        É permitido apenas valores acima ou igual a 100!
                     </div>
                 </div>
 

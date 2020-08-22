@@ -26,14 +26,6 @@
             retry(2),
             catchError(this.handleError))
       }
-      // Obtém um funcionário pelo ID.
-      getFuncionarioById(id: number): Observable<Funcionario> {
-        return this.httpClient.get<Funcionario>(this.url + '/' + id)
-          .pipe(
-            retry(2),
-            catchError(this.handleError)
-          )
-      }
       // Salva um funcionário novo.
       saveFuncionario(funcionario: Funcionario): Observable<Funcionario> {
         return this.httpClient.post<Funcionario>(this.url, JSON.stringify(funcionario), this.httpOptions)

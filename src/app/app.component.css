@@ -123,7 +123,7 @@ html {
     color: white;
 }
 
-input.ng-invalid.ng-dirty {
+input:invalid.ng-dirty {
     background-position: right calc(0.375em + 0.1875rem) center;
     padding-right: calc(1.5em + 0.75rem);
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
@@ -133,7 +133,7 @@ input.ng-invalid.ng-dirty {
     box-shadow: 0 0 0 0.2rem rgba(167, 40, 40, 0.25);
 }
 
-input.ng-valid.ng-dirty {
+input:valid {
     background-position: right calc(0.375em + 0.1875rem) center;
     padding-right: calc(1.5em + 0.75rem);
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPjxwYXRoIGZpbGw9IiMyZWI4NWMiIGQ9Ik0yLjMgNi43My42IDQuNTNjLS40LTEuMDQuNDYtMS40IDEuMS0uOGwxLjEgMS40IDMuNC0zLjhjLjYtLjYzIDEuNi0uMjcgMS4yLjdsLTQgNC42Yy0uNDMuNS0uOC40LTEuMS4xeiIvPjwvc3ZnPg==);
@@ -143,7 +143,7 @@ input.ng-valid.ng-dirty {
     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
 
-select.ng-valid {
+select:valid {
     background-position: right calc(0.375em + 0.8000rem) center;
     padding-right: calc(1.5em + 0.75rem);
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPjxwYXRoIGZpbGw9IiMyZWI4NWMiIGQ9Ik0yLjMgNi43My42IDQuNTNjLS40LTEuMDQuNDYtMS40IDEuMS0uOGwxLjEgMS40IDMuNC0zLjhjLjYtLjYzIDEuNi0uMjcgMS4yLjdsLTQgNC42Yy0uNDMuNS0uOC40LTEuMS4xeiIvPjwvc3ZnPg==);
@@ -153,7 +153,7 @@ select.ng-valid {
     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
 
-#validInput.ng-valid {
+#validInput:valid {
     background-position: right calc(0.375em + 0.1875rem) center;
     padding-right: calc(1.5em + 0.75rem);
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPjxwYXRoIGZpbGw9IiMyZWI4NWMiIGQ9Ik0yLjMgNi43My42IDQuNTNjLS40LTEuMDQuNDYtMS40IDEuMS0uOGwxLjEgMS40IDMuNC0zLjhjLjYtLjYzIDEuNi0uMjcgMS4yLjdsLTQgNC42Yy0uNDMuNS0uOC40LTEuMS4xeiIvPjwvc3ZnPg==);
@@ -163,7 +163,7 @@ select.ng-valid {
     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
 
-#validSelect.ng-valid {
+#validSelect:valid {
     background-position: right calc(0.375em + 0.8000rem) center;
     padding-right: calc(1.5em + 0.75rem);
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPjxwYXRoIGZpbGw9IiMyZWI4NWMiIGQ9Ik0yLjMgNi43My42IDQuNTNjLS40LTEuMDQuNDYtMS40IDEuMS0uOGwxLjEgMS40IDMuNC0zLjhjLjYtLjYzIDEuNi0uMjcgMS4yLjdsLTQgNC42Yy0uNDMuNS0uOC40LTEuMS4xeiIvPjwvc3ZnPg==);
@@ -185,4 +185,23 @@ select.ng-valid {
     margin-top: .25rem;
     font-size: 80%;
     color: #e55353;
+}
+
+.topnav input[type=text] {
+    height: 30px;
+    float: inline-end;
+    margin-top: -2px;
+}
+
+#inpSearch {
+    padding-left: 5px;
+    padding-bottom: 7px;
+    width: 10rem;
+    font-size: small;
+    background-position: right calc(0.375em + 0.15000rem) center;
+    background-image: url(https://cdn.icon-icons.com/icons2/494/PNG/512/magnifier_icon-icons.com_48267.png);
+    background-repeat: no-repeat;
+    border-color: rgb(206, 212, 218);
+    background-size: calc(0.65em + 0.375rem) calc(0.65em + 0.375rem);
+    box-shadow: none;
 }
