@@ -1,0 +1,39 @@
+{
+  "funcionarios": [
+    {
+      "nome": "Katharine Ta",
+      "cargo": "Gerente",
+      "salario": "5000",
+      "email": "katharineelliott@gmail.com",
+      "id": 1
+    },
+    {
+      "email": "leonard@gmail.com",
+      "nome": "Leonard Harv",
+      "cargo": "Gerente",
+      "salario": "2500",
+      "id": 2
+    },
+    {
+      "nome": "Pennington Gill",
+      "email": "PenningtonGill@gmail.com",
+      "cargo": "Sub-Gerente",
+      "salario": "1800",
+      "id": 3
+    },
+    {
+      "nome": "Elvis Presley",
+      "cargo": "Estagiário",
+      "salario": "800",
+      "email": "elvispresley@gmail.com",
+      "id": 4
+    },
+    {
+      "nome": "Pennington Gill",
+      "cargo": "Sub-Gerente",
+      "salario": "5000",
+      "email": "katharineelliott@gmail.com",
+      "id": 5
+    }
+  ]
+}
